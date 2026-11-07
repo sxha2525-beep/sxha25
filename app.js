@@ -259,6 +259,41 @@
     wheelAccum = 0;
     stepScene(direction);
   },{passive:false});
+
+  // En teléfonos, un deslizamiento vertical equivale a un paso de rueda.
+  // Cancelamos el scroll nativo solo si el gesto es claramente vertical;
+  // así no compite con la cortina ni impide los toques sobre las portadas.
+  let touchOrigin = null;
+  window.addEventListener('touchstart',(event) => {
+    touchOrigin = null;
+    if (!introFinished || viewing || switching || event.touches.length !== 1) return;
+    if (!event.target.closest?.('#stage')) return;
+    const touch = event.touches[0];
+    touchOrigin = {x:touch.clientX,y:touch.clientY};
+  },{passive:true});
+  window.addEventListener('touchmove',(event) => {
+    if (event.touches.length !== 1) {touchOrigin = null;return;}
+    if (!touchOrigin) return;
+    const touch = event.touches[0];
+    const dx = touch.clientX - touchOrigin.x;
+    const dy = touch.clientY - touchOrigin.y;
+    if (Math.abs(dy) > 12 && Math.abs(dy) > Math.abs(dx) * 1.2 && event.cancelable) {
+      event.preventDefault();
+    }
+  },{passive:false});
+  window.addEventListener('touchend',(event) => {
+    const origin = touchOrigin;
+    touchOrigin = null;
+    if (!origin || !introFinished || viewing || switching || !event.changedTouches.length) return;
+    const touch = event.changedTouches[0];
+    const dx = touch.clientX - origin.x;
+    const dy = origin.y - touch.clientY;
+    if (Math.abs(dy) >= 55 && Math.abs(dy) > Math.abs(dx) * 1.2) {
+      stepScene(dy > 0 ? 1 : -1);
+    }
+  },{passive:true});
+  window.addEventListener('touchcancel',() => {touchOrigin = null;},{passive:true});
+
   window.addEventListener('keydown',(event) => {
     if (!introFinished || viewing || event.altKey || event.ctrlKey || event.metaKey) return;
     if (document.activeElement?.closest('button,a,input,textarea,select')) return;
