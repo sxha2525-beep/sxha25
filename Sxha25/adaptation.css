@@ -1,0 +1,125 @@
+/* Indicación de entrada más reconocible, sin volver al icono de play. */
+.intro-entry-cue{
+  padding:15px 22px;
+  background:#513542a8;
+  border:1px solid #c89bad;
+  border-radius:3px;
+  color:#f5e5e9;
+  opacity:.72;
+  gap:12px;
+  box-shadow:5px 7px 0 #110d1780,0 13px 29px #130d1763;
+  pointer-events:none;
+}
+.intro-entry-cue i{width:27px;background:#d8adbc}
+.intro-entry-cue:after{
+  content:'↗';
+  display:block;
+  font-size:17px;
+  font-weight:400;
+  line-height:1;
+  letter-spacing:0;
+  margin-left:1px;
+}
+.intro-overlay.ready .intro-entry-cue{
+  opacity:1;
+  animation:enterCueBreathe 2.5s ease-in-out infinite;
+}
+.intro-overlay.ready:hover .intro-entry-cue,
+.intro-overlay:focus-visible .intro-entry-cue{
+  background:#694756d9;
+  border-color:#f3d8e1;
+  box-shadow:5px 9px 0 #110d1790,0 17px 36px #130d1790;
+  animation:none;
+  transform:translateY(-4px);
+}
+.intro-overlay:active .intro-entry-cue{
+  transform:translateY(1px) scale(.98);
+  background:#795464;
+}
+.intro-overlay:focus-visible{outline:none}
+@keyframes enterCueBreathe{
+  0%,100%{box-shadow:5px 7px 0 #110d1780,0 13px 29px #130d1763}
+  50%{box-shadow:5px 7px 0 #110d1780,0 0 0 6px #b4859633,0 14px 33px #130d177b}
+}
+
+/* Marfil más luminoso para que los ornamentos contrasten con el ángel. */
+.scene-cream:before{border-color:#fff0dfd4;opacity:.75}
+.scene-cream:after{
+  border-color:#ffebd1d6;
+  box-shadow:0 0 0 75px #efe0cd0b,0 0 0 76px #f9e6cdab,0 0 0 133px #efe0cd09,0 0 0 134px #f3dcc09b;
+  opacity:.73;
+}
+.friend-layout:before{
+  background:#f2dfc53b;
+  border-color:#f9e7d0a8;
+  box-shadow:15px 17px 0 #ddc6ad45;
+}
+.friend-layout:after{
+  border-color:#ffead1c9;
+  box-shadow:0 0 0 33px #f2e4d10b,0 0 0 34px #fce8cfad,0 0 0 71px #f2e4d10b,0 0 0 72px #eed5b9a4;
+}
+.friend-grid:before{border-color:#f5e3c9c4;opacity:.9;box-shadow:0 0 0 23px #f2e4d123,0 0 0 24px #f9e6cba3}
+.friend-grid:after{color:#ffe8ca;opacity:.88}
+.friend-thread{color:#f2dcc0;opacity:.84}
+.friend-heading-glyph{color:#f8ddbe;text-shadow:1px 2px 0 #6e5a4c66}
+.friend-heading-rule{background:#e9c6ad;box-shadow:5px 6px 0 #785e4e91}
+
+/* Tablet apaisada: portada y collage a dos columnas, sin una pantalla larguísima. */
+@media(min-width:761px) and (max-width:950px) and (orientation:landscape){
+  .wine-layout{display:flex;align-items:center}
+  .wine-content{
+    display:grid;
+    grid-template-columns:minmax(205px,.72fr) minmax(0,1.28fr);
+    gap:3%;
+    min-height:0;
+    margin:16px auto 0;
+  }
+  .wine-title{font-size:clamp(51px,7vw,80px)}
+  .wine-collage{height:clamp(330px,56svh,445px);max-width:100%}
+}
+/* Tablet vertical: collage bajo el nombre, con espacio respirable. */
+@media(min-width:761px) and (max-width:950px) and (orientation:portrait){
+  .wine-layout{display:block}
+  .wine-content{display:block;max-width:670px;min-height:0;margin:10px auto 0}
+  .wine-intro{margin:0}
+  .wine-title{font-size:clamp(68px,9vw,88px)}
+  .wine-collage{width:min(100%,630px);height:clamp(380px,48svh,480px);margin:24px auto 0}
+  .blue-layout{padding-top:clamp(115px,15svh,170px)}
+  .release-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;max-width:600px}
+  .viewer-content{
+    display:flex;
+    flex-direction:column;
+    align-items:stretch;
+    justify-content:flex-start;
+    gap:17px;
+    max-width:650px;
+    overflow-y:auto;
+    padding:8px 36px 35px;
+  }
+  .viewer-record-area{width:min(27svh,225px);align-self:center;flex:0 0 auto}
+  .viewer-info{flex-shrink:0}
+  .viewer-info .score-preview{height:clamp(155px,21svh,210px)}
+}
+/* Teléfono: las secciones caben mejor en pantallas de altura normal. */
+@media(max-width:760px){
+  .wine-collage{height:clamp(300px,51svh,420px)}
+  .blue-layout{padding-top:clamp(125px,16svh,170px)}
+  .archive-heading h2{font-size:clamp(36px,8.7vw,68px)}
+  .intro-entry-cue{padding:13px 18px;font-size:10px}
+}
+@media(max-width:420px){
+  .wine-collage{height:clamp(285px,49svh,360px)}
+  .intro-entry-cue{gap:8px;padding:12px 14px}
+  .intro-entry-cue i{width:20px}
+}
+/* Móvil en horizontal: la introducción no necesita desplazarse. */
+@media(max-height:520px) and (orientation:landscape){
+  .intro-overlay{gap:9px}
+  .intro-disc{width:clamp(58px,15svh,90px)}
+  .intro-title{font-size:clamp(45px,13svh,69px)}
+  .intro-entry-cue{padding:9px 18px;font-size:9px}
+  .intro-pulses{bottom:12px}
+}
+@media(prefers-reduced-motion:reduce){
+  .intro-overlay.ready .intro-entry-cue{animation:none}
+}

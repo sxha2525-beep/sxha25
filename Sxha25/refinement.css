@@ -1,0 +1,122 @@
+/* Portada 03 — composición editorial con objetos que se superponen. */
+.scene-wine{background:#302127}
+.scene-wine:after{content:'';position:absolute;left:-150px;top:-200px;width:560px;height:560px;border:1px solid #64404d;border-radius:50%;box-shadow:0 0 0 65px #37242b,0 0 0 66px #533541,0 0 0 132px #302127,0 0 0 133px #513541;opacity:.38;z-index:-1;pointer-events:none}
+.wine-layout{display:flex;align-items:center}
+.wine-content{width:100%;max-width:1230px;display:grid;grid-template-columns:43% 57%;align-items:center;gap:0;margin:20px auto 0;min-height:550px}
+.wine-intro{align-self:center;position:relative;z-index:8;margin-top:-28px}
+.wine-title{font-size:clamp(74px,8.4vw,126px);letter-spacing:.015em;line-height:1.2;font-weight:700;text-shadow:0 10px 36px #1f141a60;white-space:nowrap}
+.wine-title .period{color:#b68a94}
+.wine-underline{width:105px;height:8px;background:#a47380;margin:27px 0 0 8px;transform:rotate(-3deg);box-shadow:4px 5px 0 #20161a}
+.wine-collage{height:550px;max-width:690px;position:relative;isolation:isolate;transform:rotate(.7deg)}
+.collage-paper{position:absolute;display:flex;flex-direction:column;border:1px solid #805f69;box-shadow:10px 14px 0 #1c131875,17px 21px 34px #120e115c;transition:transform .65s cubic-bezier(.18,1.3,.42,1),box-shadow .35s;overflow:hidden}
+.collage-paper:hover{z-index:12;box-shadow:15px 20px 0 #1c13188a,24px 32px 46px #100b105e}
+.paper-index{font-size:10px;line-height:1;font-weight:700;letter-spacing:.12em;opacity:.5}
+.paper-contents{display:flex;flex-direction:column}
+.paper-contents span{display:block;white-space:normal}
+.paper-anime{z-index:3;width:43%;height:63%;left:1%;top:6%;padding:24px 21px;background:#533744;transform:rotate(-11deg)}
+.paper-anime .paper-contents{margin-top:auto;gap:17px;padding-bottom:17px}
+.paper-anime .paper-contents span{font-size:clamp(17px,1.7vw,25px);line-height:1.06;font-weight:800;letter-spacing:-.012em;text-transform:uppercase;max-width:230px}
+.paper-anime .paper-contents span:nth-child(2){font-style:italic;font-weight:500;font-size:clamp(20px,2.3vw,31px);line-height:1}
+.paper-anime .paper-contents span:nth-child(3){font-size:12px;letter-spacing:.025em;line-height:1.5}
+.paper-corner{position:absolute;top:19px;right:21px;font-size:25px;line-height:1;color:#d4aab7}
+.paper-anime:hover{transform:rotate(-6deg) translateY(-13px)}
+.paper-games{z-index:4;width:51%;height:69%;right:5%;top:0;padding:24px 27px 20px;background:#221b21;transform:rotate(8deg)}
+.paper-games .paper-contents{margin:auto 0;gap:18px}
+.paper-games .paper-contents span{font-size:clamp(20px,2.2vw,34px);font-weight:700;line-height:1.02;letter-spacing:.025em;text-transform:uppercase}
+.paper-games .paper-contents span:nth-child(2){font-size:clamp(17px,1.9vw,29px);font-weight:500;font-style:italic}
+.paper-games .paper-contents span:nth-child(3){font-size:clamp(16px,1.6vw,23px)}
+.paper-games .paper-contents span:nth-child(4){font-size:clamp(17px,1.7vw,25px);font-weight:500}
+.paper-bottom{letter-spacing:.3em;font-size:14px;color:#856d77}
+.paper-games:hover{transform:rotate(3deg) translateY(-12px)}
+.paper-other{z-index:6;width:42%;height:27%;left:11%;bottom:6%;padding:20px 24px;background:#412d36;transform:rotate(6deg)}
+.paper-other .paper-contents{gap:14px;margin:auto 0}
+.paper-other .paper-contents span:first-child{font-family:ui-monospace,Consolas,monospace;font-size:clamp(27px,3vw,44px);font-weight:400;letter-spacing:-.045em}
+.paper-other .paper-contents span:last-child{font-size:13px;font-weight:800;letter-spacing:.035em;text-transform:uppercase}
+.paper-other .paper-contents span:only-child{font-family:ui-monospace,Consolas,monospace;font-size:clamp(27px,3vw,44px);font-weight:400;letter-spacing:-.045em;text-transform:none}
+.paper-other:hover{transform:rotate(1deg) translateY(-12px)}
+.paper-music{z-index:7;width:61%;min-height:17%;right:1%;bottom:6%;padding:20px 23px;background:#6b4856;transform:rotate(-8deg);display:flex;flex-direction:row;align-items:center}
+.paper-music .paper-contents{display:flex;flex-direction:row;align-items:center;gap:8px;flex-wrap:wrap}
+.paper-music .paper-contents span{font-size:clamp(13px,1.6vw,20px);font-weight:600;line-height:1.3}
+.paper-music .paper-contents span+span:before{content:'·';padding-right:8px;color:#bf99a6}
+.paper-small-star{font-size:25px;margin-left:auto}
+.paper-music:hover{transform:rotate(-3deg) translateY(-12px)}
+.collage-colors{position:absolute;z-index:5;right:2%;bottom:33%;width:34%;padding:10px 18px;border:1px solid #956e7b;background:#35252d;transform:rotate(12deg);box-shadow:8px 12px 0 #1a121799}
+.collage-colors .paper-contents{flex-direction:row;flex-wrap:wrap;gap:7px 10px}
+.collage-colors .paper-contents span{font-size:10px;font-weight:600;letter-spacing:.03em;text-transform:uppercase}
+.collage-colors .paper-contents span+span:before{content:'•';margin-right:10px;opacity:.3}
+.collage-scribble{position:absolute;width:230px;left:-15%;bottom:-2%;color:#b88997;transform:rotate(-24deg);opacity:.7;z-index:8;pointer-events:none}
+.collage-paper.reveal{transform:translateY(28px) rotate(var(--paper-angle));}
+.paper-anime{--paper-angle:-11deg}
+.paper-games{--paper-angle:8deg}
+.paper-other{--paper-angle:6deg}
+.paper-music{--paper-angle:-1deg}
+.scene.active .collage-paper.reveal,.scene.in-view .collage-paper.reveal{transform:rotate(var(--paper-angle));}
+.scene.active .paper-anime:hover,.scene.in-view .paper-anime:hover{transform:rotate(-6deg) translateY(-13px)}
+.scene.active .paper-games:hover,.scene.in-view .paper-games:hover{transform:rotate(3deg) translateY(-12px)}
+.scene.active .paper-other:hover,.scene.in-view .paper-other:hover{transform:rotate(1deg) translateY(-12px)}
+.scene.active .paper-music:hover,.scene.in-view .paper-music:hover{transform:rotate(-3deg) translateY(-12px)}
+.collage-colors.reveal{transform:translateY(24px) rotate(12deg)}
+.scene.active .collage-colors.reveal,.scene.in-view .collage-colors.reveal{transform:rotate(12deg)}
+.scroll-cue{bottom:30px;left:50%;opacity:.7}
+.scroll-cue span{font-size:28px!important;font-weight:400}
+
+/* La cortina ocupa todo el viewport durante el salto entre escenas. */
+.transition-curtain{position:fixed;inset:0;z-index:60;background:var(--curtain-color,#302127);color:#eee9e5;display:grid;place-items:center;transform:translateY(110%);opacity:1;overflow:hidden;pointer-events:none;will-change:transform}
+.transition-curtain span{font-size:min(34vw,440px);font-weight:700;letter-spacing:-.07em;opacity:.12;line-height:1;transform:rotate(-7deg)}
+.transition-curtain i{position:absolute;width:65vw;height:65vw;border-radius:50%;border:1px solid currentColor;opacity:.18;box-shadow:0 0 0 80px #ffffff06,0 0 0 81px #ffffff22}
+body[data-shift=down].is-switching .transition-curtain{animation:curtainDown 1.12s cubic-bezier(.68,0,.22,1) both}
+body[data-shift=up].is-switching .transition-curtain{animation:curtainUp 1.12s cubic-bezier(.68,0,.22,1) both}
+body[data-shift=up].is-switching .transition-curtain span{transform:rotate(7deg)}
+body.is-switching #stage,body.is-switching .topbar{pointer-events:none}
+body[data-curtain=cream] .transition-curtain{color:#2f2a27}
+@keyframes curtainDown{0%{transform:translateY(110%)}42%{transform:translateY(0)}55%{transform:translateY(0)}100%{transform:translateY(-110%)}}
+@keyframes curtainUp{0%{transform:translateY(-110%)}42%{transform:translateY(0)}55%{transform:translateY(0)}100%{transform:translateY(110%)}}
+html{scroll-snap-type:y mandatory}
+body{overscroll-behavior-y:none}
+.scene-inner{transform:translateY(var(--section-drift,0px)) scale(var(--section-scale,1));opacity:var(--section-opacity,1);transition:filter .7s,opacity .06s linear}
+.scene:not(.active):not(.in-view) .scene-inner{filter:blur(2px);transform:scale(.975)}
+
+@media(max-width:1050px){
+  .wine-content{grid-template-columns:42% 58%}
+  .wine-title{font-size:clamp(62px,8vw,92px)}
+  .paper-anime{padding:19px}
+  .paper-games{padding:21px}
+}
+@media(max-width:760px){
+  .wine-layout{display:block}
+  .wine-content{display:block;margin:55px auto 0;min-height:0}
+  .wine-intro{margin:0;position:relative;z-index:9}
+  .wine-title{font-size:clamp(58px,12vw,86px);letter-spacing:.008em}
+  .wine-underline{height:5px;width:65px;margin:9px 0 0 5px}
+  .wine-collage{width:min(100%,480px);height:440px;margin:10px auto 0;transform:rotate(0)}
+  .paper-anime{top:5%;left:3%;width:43%;height:62%;padding:18px 14px}
+  .paper-games{right:4%;top:2%;width:50%;height:66%;padding:18px 14px}
+  .paper-anime .paper-contents{gap:10px}
+  .paper-anime .paper-contents span{font-size:clamp(15px,4vw,20px)}
+  .paper-anime .paper-contents span:nth-child(2){font-size:clamp(17px,4.5vw,24px)}
+  .paper-anime .paper-contents span:nth-child(3){font-size:10px}
+  .paper-games .paper-contents{gap:12px}
+  .paper-games .paper-contents span{font-size:clamp(15px,4.5vw,22px)}
+  .paper-games .paper-contents span:nth-child(n){font-size:clamp(14px,4vw,21px)}
+  .paper-other{bottom:10%;left:10%;padding:14px;width:43%;height:25%}
+  .paper-other .paper-contents span:first-child{font-size:27px}
+  .paper-other .paper-contents span:last-child{font-size:10px}
+  .paper-music{bottom:5%;right:1%;min-height:18%;width:61%;padding:13px}
+  .paper-music .paper-contents span{font-size:12px}
+  .collage-colors{right:0;bottom:33%;width:36%;padding:9px}
+  .collage-colors .paper-contents span{font-size:8px}
+  .collage-scribble{width:170px;left:-5%;bottom:-1%}
+}
+@media(max-width:420px){
+  .wine-content{margin-top:42px}
+  .wine-title{font-size:54px}
+  .wine-collage{height:370px}
+  .collage-paper{box-shadow:6px 8px 0 #1c131875,11px 17px 21px #120e115c}
+  .paper-anime .paper-contents span{font-size:15px}
+  .paper-anime .paper-contents span:nth-child(2){font-size:18px}
+  .paper-anime .paper-contents span:nth-child(3){font-size:9px}
+  .paper-games .paper-contents{gap:8px}
+  .paper-games .paper-contents span:nth-child(n){font-size:15px}
+  .paper-music .paper-contents span{font-size:10px}
+}
+@media(prefers-reduced-motion:reduce){body.is-switching .transition-curtain{animation:none!important}.scene-inner{filter:none!important;transform:none!important}.collage-paper{transition:none}}

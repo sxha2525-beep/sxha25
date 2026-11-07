@@ -1,0 +1,110 @@
+/* Inicio sin palabras: disco, pulsos y gesto de reproducción. */
+.intro-overlay{position:fixed;inset:0;z-index:120;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:34px;width:100%;height:100svh;background:#261d25;color:#e7d6db;border:0;cursor:default;transition:opacity .65s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1);touch-action:none}
+.intro-overlay[hidden]{display:none}
+.intro-overlay.ready{cursor:pointer}
+.intro-overlay.leaving{opacity:0;transform:scale(1.045);pointer-events:none}
+.intro-disc{position:relative;display:grid;place-items:center;width:clamp(112px,20vw,174px);aspect-ratio:1;border-radius:50%;background:#151820;border:1px solid #6f6670;box-shadow:0 0 0 6px #211b24,0 0 0 7px #73636a,0 0 0 21px #231c26,0 0 0 22px #594650,0 18px 42px #100d1490;animation:introSpin 5s linear infinite}
+.intro-disc i{position:absolute;width:74%;height:74%;border-radius:50%;border:1px solid #5e5964;box-shadow:0 0 0 7px #20212b,0 0 0 8px #3e414c}
+.intro-disc b{position:absolute;width:27%;height:27%;border-radius:50%;background:#9d7784;border:8px solid #533d4b;box-shadow:0 0 0 1px #b18a96}
+.intro-disc b:after{content:'';position:absolute;inset:43%;background:#1c1b24;border-radius:50%}
+.intro-disc em{position:absolute;display:grid;place-items:center;width:100%;height:100%;font-style:normal;font-size:40px;color:#f4e8e9;opacity:0;transform:rotate(0deg);transition:opacity .3s;z-index:2;text-shadow:0 0 20px #160d18}
+.intro-overlay.ready .intro-disc{animation:none;transform:rotate(0deg);transition:transform .4s cubic-bezier(.2,1.3,.4,1)}
+.intro-overlay.ready .intro-disc em{opacity:1}
+.intro-overlay.ready:hover .intro-disc{transform:scale(1.07)}
+.intro-pulses{height:27px;display:flex;align-items:center;gap:6px;opacity:.6;transition:opacity .3s}
+.intro-pulses i{width:3px;height:12px;border-radius:4px;background:#c5a3af;animation:introPulse .65s ease-in-out infinite alternate}
+.intro-pulses i:nth-child(2){animation-delay:.12s}.intro-pulses i:nth-child(3){animation-delay:.22s}.intro-pulses i:nth-child(4){animation-delay:.35s}.intro-pulses i:nth-child(5){animation-delay:.47s}
+.intro-overlay.ready .intro-pulses{opacity:0}
+@keyframes introSpin{to{transform:rotate(360deg)}}
+@keyframes introPulse{from{height:5px}to{height:27px}}
+@media(prefers-reduced-motion:reduce){.intro-disc,.intro-pulses i{animation:none!important}.intro-overlay{transition:none}}
+
+/* Sonido: un solo pictograma. */
+.sound-toggle{width:42px;height:42px;padding:0;display:grid;place-items:center;gap:0;border-radius:50%;box-shadow:0 5px 16px #080a0d26}
+.sound-toggle .icon{width:20px;height:20px}
+.sound-label{display:none}
+
+/* Imágenes integradas en el material, nunca protagonistas por encima del texto. */
+.paper-anime,.paper-games{isolation:isolate}
+.paper-anime:before,.paper-games:before{content:'';position:absolute;inset:0;background-size:cover;background-position:center;pointer-events:none;z-index:0}
+.paper-anime:before{background-image:url('./assets/spy-background.jpg');opacity:.2;mix-blend-mode:screen}
+.paper-games:before{background-image:url('./assets/deepwoken-background.jpg');opacity:.26;mix-blend-mode:screen}
+.paper-anime>*,.paper-games>*{position:relative;z-index:1}
+.paper-anime .paper-contents{gap:9px;padding-bottom:5px}
+.paper-anime .paper-contents span{font-size:clamp(13px,1.5vw,20px);line-height:1.15}
+.paper-anime .paper-contents span:nth-child(2){font-size:clamp(15px,1.8vw,24px)}
+.paper-anime .paper-contents span:nth-child(n+3){font-size:clamp(10px,1.1vw,14px);line-height:1.3}
+
+/* Dos registros tipográficos en la cinta de música. */
+.paper-music{width:72%;min-height:24%;bottom:3%;padding:14px 20px;transform:rotate(-1deg)}
+.paper-music .music-lines{display:flex;flex-direction:column;gap:10px;flex:1}
+.paper-music .paper-contents{gap:2px 9px;display:flex;flex-direction:row;align-items:center;flex-wrap:wrap}
+.paper-music .paper-contents span{font-size:clamp(10px,1.06vw,13px);font-weight:700;line-height:1.25}
+.paper-music .paper-contents span+span:before{content:'·';padding-right:9px;color:#c7a4af}
+.paper-music .music-genres{border-top:1px solid #c49ba95e;padding-top:8px}
+.paper-music .music-genres span{font-size:clamp(9px,.95vw,11px);font-weight:500}
+.paper-small-star{font-size:21px;align-self:flex-start;margin-left:7px;flex:0 0 auto}
+
+/* Las tres mini tarjetas tienen el color real y el valor hexadecimal. */
+.collage-colors{display:flex;align-items:stretch;gap:6px;width:52%;right:1%;bottom:24%;padding:0;background:none;border:none;box-shadow:none;transform:rotate(9deg)}
+.mini-color{display:flex;flex:1;flex-direction:column;justify-content:space-between;min-width:0;min-height:58px;padding:7px 7px;border:1px solid #ffffff30;border-radius:3px;box-shadow:5px 7px 0 #110d1170,6px 11px 14px #100b1040;transition:transform .3s cubic-bezier(.2,1.4,.5,1)}
+.mini-color:hover{transform:translateY(-6px) rotate(-2deg)}
+.mini-color span{font-size:9px;line-height:1.1;font-weight:800;white-space:normal}
+.mini-color code{font-family:ui-monospace,Consolas,monospace;font-size:9px;letter-spacing:-.04em;white-space:nowrap;font-weight:600;opacity:.8}
+.scene.active .collage-colors.reveal,.scene.in-view .collage-colors.reveal{transform:rotate(9deg)}
+.collage-scribble{left:-37%;bottom:1%;width:190px;transform:rotate(-15deg);opacity:.65;z-index:2}
+
+/* El contorno de foco es útil con Tab, no al volver de un clic. */
+.release.pointer-restored:focus-visible{outline:none}
+
+/* Laptop: el contenido cabe sin depender de poder desplazarse dentro de cada escena. */
+@media(min-width:761px){
+  .scene-inner{padding-top:clamp(68px,11vh,110px);padding-bottom:clamp(28px,5vh,60px)}
+  .section-stamp{top:clamp(85px,13vh,125px)}
+  .wine-content{min-height:0;margin:34px auto 0}
+  .wine-collage{height:clamp(350px,61vh,510px)}
+  /* Pie del collage: Linux a la izquierda, colores arriba y música debajo,
+     con separaciones suficientes para que ninguna tarjeta oculte textos. */
+  .paper-other{left:3%;bottom:1%;width:31%;height:23%;padding:12px 16px;--paper-angle:4deg}
+  .paper-music{right:0;bottom:0;width:64%;min-height:19%;padding:10px 14px;--paper-angle:-3deg;transform:rotate(-3deg)}
+  .paper-music .music-lines{gap:6px}
+  .paper-music .paper-contents{gap:2px 7px}
+  .paper-music .paper-contents span{font-size:clamp(10px,.98vw,12px);line-height:1.18}
+  .paper-music .music-genres{padding-top:5px}
+  .paper-music .music-genres span{font-size:clamp(9px,.88vw,10.5px)}
+  .collage-colors{bottom:26%;right:0;width:50%}
+  .blue-layout{padding-top:clamp(115px,18vh,170px)}
+  .archive-heading{padding-bottom:19px}
+  .archive-heading h2{font-size:clamp(44px,5.5vw,76px)}
+  .archive-heading .eyebrow{margin-bottom:8px}
+  .release-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;padding-top:27px;max-width:1050px}
+  .archive-foot{margin-top:38px}
+  .wip-cluster{margin-top:clamp(35px,5vh,85px)}
+  .clip-stage{height:clamp(310px,49vh,460px)}
+}
+@media(max-width:760px){
+  .paper-other .paper-contents span:only-child{font-size:clamp(22px,5vw,32px)}
+  .paper-anime .paper-contents{gap:8px}
+  .paper-anime .paper-contents span{font-size:clamp(12px,3.5vw,16px)}
+  .paper-anime .paper-contents span:nth-child(2){font-size:clamp(15px,4vw,20px)}
+  .paper-anime .paper-contents span:nth-child(n+3){font-size:clamp(9px,2.6vw,12px)}
+  .paper-music{width:75%;bottom:2%;min-height:28%;padding:12px 10px}
+  .paper-music .music-lines{gap:5px}
+  .paper-music .paper-contents span{font-size:10px}
+  .paper-music .music-genres span{font-size:8px}
+  .paper-small-star{display:none}
+  .collage-colors{right:0;bottom:27%;width:66%;gap:4px}
+  .collage-scribble{display:none}
+  .mini-color{min-height:54px;padding:6px 5px}
+  .mini-color span{font-size:8px}
+  .mini-color code{font-size:8px}
+}
+@media(max-width:420px){
+  .paper-anime .paper-contents{gap:5px}
+  .paper-anime .paper-contents span{font-size:12px}
+  .paper-anime .paper-contents span:nth-child(2){font-size:14px}
+  .paper-anime .paper-contents span:nth-child(n+3){font-size:9px}
+  .paper-music .paper-contents span{font-size:8px}
+  .paper-music .music-genres span{font-size:7.5px}
+  .mini-color span,.mini-color code{font-size:7px}
+}

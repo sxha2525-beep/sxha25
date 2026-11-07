@@ -1,0 +1,130 @@
+/* Amigos: cuatro fotos, nombres y un único título, sin clips ficticios. */
+.friend-layout{
+  width:100%;
+  max-width:1120px;
+  min-height:clamp(360px,67vh,600px);
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:minmax(0,1.55fr) minmax(0,.85fr);
+  align-items:center;
+  column-gap:clamp(25px,4vw,70px);
+}
+.friend-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:24px 22px;
+  align-items:center;
+}
+.friend-entry{
+  display:flex;
+  align-items:center;
+  gap:clamp(10px,1.1vw,19px);
+  min-width:0;
+  color:#3a332e;
+  font-size:clamp(12px,1.2vw,16px);
+  font-weight:700;
+  letter-spacing:.015em;
+}
+.friend-entry img{
+  display:block;
+  width:clamp(84px,9vw,124px);
+  aspect-ratio:1;
+  flex:none;
+  object-fit:cover;
+  object-position:center;
+  border:4px solid #e9dfcf;
+  border-radius:6px;
+  background:#292b2d;
+  box-shadow:7px 9px 0 #6a5a4b48,10px 12px 23px #4b423940;
+  transition:transform .55s cubic-bezier(.2,1.35,.4,1),box-shadow .45s ease;
+}
+.friend-entry:hover img{
+  transform:translateY(-7px) rotate(-2deg);
+  box-shadow:8px 14px 0 #6a5a4b52,12px 17px 24px #4b423945;
+}
+.friend-entry .avatar-damian{object-position:70% center}
+.friend-heading{display:flex;align-items:center;justify-content:center;min-width:0}
+.friend-heading .wip-title{font-size:clamp(62px,7.2vw,108px);margin:0}
+
+/* La posición de cada collage es fija: solo responde al hover. */
+.scene.active .collage-paper.reveal-settled,
+.scene.in-view .collage-paper.reveal-settled{transition-delay:0s}
+.scene.active .paper-anime:hover,.scene.in-view .paper-anime:hover{transform:rotate(-7deg) translateY(-10px)}
+.scene.active .paper-games:hover,.scene.in-view .paper-games:hover{transform:rotate(4deg) translateY(-10px)}
+.scene.active .paper-other:hover,.scene.in-view .paper-other:hover{transform:rotate(2deg) translateY(-10px)}
+.scene.active .paper-music:hover,.scene.in-view .paper-music:hover{transform:rotate(-2deg) translateY(-5px)}
+
+/* Letras que reaccionan individualmente cuando el cursor pasa por encima. */
+.title-letter{display:inline-block;transform-origin:50% 100%;will-change:transform}
+.title-letter.rippling{animation:titleLetterRipple .52s cubic-bezier(.25,.8,.25,1) both}
+@keyframes titleLetterRipple{
+  0%{transform:translateY(0)}
+  43%{transform:translateY(-.17em)}
+  75%{transform:translateY(-.06em)}
+  100%{transform:translateY(0)}
+}
+
+/* El visor mantiene la ventana editorial, con un grabado discreto detrás. */
+.viewer:before{
+  content:'';
+  position:absolute;
+  top:-300px;
+  right:-230px;
+  width:510px;
+  height:510px;
+  border-radius:50%;
+  border:1px solid #61748a59;
+  box-shadow:0 0 0 58px #202b39,0 0 0 59px #5d738b35,0 0 0 112px #202b39,0 0 0 113px #546a8130;
+  opacity:.8;
+  pointer-events:none;
+}
+.viewer:after{
+  content:'';
+  position:absolute;
+  bottom:12%;
+  left:-10%;
+  width:42%;
+  height:1px;
+  background:#6d849c36;
+  transform:rotate(-24deg);
+  pointer-events:none;
+}
+.viewer-top,.viewer-content{position:relative;z-index:1}
+.viewer-cover{width:76%}
+.record{right:-12%}
+.viewer-info .score-preview{height:clamp(165px,31vh,250px);margin-top:8px}
+
+@media(max-width:850px){
+  .friend-layout{
+    display:flex;
+    flex-direction:column-reverse;
+    justify-content:center;
+    gap:28px;
+    min-height:clamp(390px,65vh,570px);
+    max-width:570px;
+  }
+  .friend-grid{width:100%;gap:20px 14px}
+  .friend-entry img{width:clamp(88px,13vw,120px)}
+  .friend-heading .wip-title{font-size:clamp(60px,10vw,88px)}
+}
+@media(max-width:560px){
+  .friend-layout{gap:24px;min-height:calc(100svh - 220px)}
+  .friend-grid{max-width:390px;gap:16px 10px}
+  .friend-entry{flex-direction:column;align-items:center;gap:9px;text-align:center;font-size:12px}
+  .friend-entry img{width:min(28vw,120px);border-width:3px}
+  .friend-heading .wip-title{font-size:clamp(54px,13vw,74px)}
+  .viewer-cover{width:76%}
+  .record{right:-9%}
+  .viewer-info .score-preview{height:clamp(118px,23vh,170px);margin-top:6px}
+}
+@media(max-height:650px) and (min-width:561px){
+  .viewer-info .score-preview{height:clamp(115px,22vh,170px)}
+}
+@media(max-height:590px) and (max-width:560px){
+  .viewer-info .score-preview{height:110px}
+  .friend-layout{gap:16px}
+  .friend-entry img{width:min(24vw,98px)}
+}
+@media(prefers-reduced-motion:reduce){
+  .title-letter,.title-letter.rippling{animation:none!important;transform:none!important}
+}

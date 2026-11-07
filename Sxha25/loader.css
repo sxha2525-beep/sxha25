@@ -1,0 +1,109 @@
+/* Dos segundos de carga; las barras se convierten en un play para entrar. */
+.intro-overlay{
+  background:#241c24;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:0;
+  cursor:wait;
+}
+.intro-overlay:before,.intro-overlay:after{display:none}
+.intro-overlay:not(.armed){cursor:wait}
+.intro-overlay.armed{cursor:pointer}
+.intro-core{
+  position:relative;
+  display:grid;
+  place-items:center;
+  width:96px;
+  height:96px;
+  transition:transform .65s cubic-bezier(.18,1.2,.3,1);
+}
+.intro-loader{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  transition:opacity .3s ease,transform .6s cubic-bezier(.6,0,.15,1);
+}
+.intro-loader i{
+  display:block;
+  flex:0 0 4px;
+  height:10px;
+  border-radius:3px;
+  background:#dab5c2;
+  animation:loaderWave 1.05s ease-in-out infinite alternate;
+}
+.intro-loader i:nth-child(2){animation-delay:.12s}
+.intro-loader i:nth-child(3){animation-delay:.24s}
+.intro-loader i:nth-child(4){animation-delay:.36s}
+.intro-loader i:nth-child(5){animation-delay:.48s}
+.intro-overlay.armed .intro-loader{
+  opacity:0;
+  transform:scale(.34) rotate(-30deg);
+  pointer-events:none;
+}
+.intro-play{
+  position:absolute;
+  width:74px;
+  height:74px;
+  display:grid;
+  place-items:center;
+  border:1px solid rgba(227,192,202,.72);
+  border-radius:50%;
+  color:#f2dde3;
+  background:rgba(242,221,227,.045);
+  opacity:0;
+  transform:scale(.52) rotate(-35deg);
+  transition:opacity .45s ease .12s,transform .7s cubic-bezier(.16,1.25,.3,1),background .35s ease,border-color .35s ease;
+}
+.intro-play .icon{
+  width:26px;
+  height:26px;
+  margin-left:0;
+  transform:translateX(-1px);
+  fill:currentColor;
+  stroke:none;
+}
+.intro-overlay.armed .intro-play{
+  opacity:1;
+  transform:scale(1) rotate(0deg);
+}
+.intro-overlay.armed:hover .intro-core,
+.intro-overlay.armed:focus-visible .intro-core{transform:scale(1.11)}
+.intro-overlay.armed:hover .intro-play,
+.intro-overlay.armed:focus-visible .intro-play{
+  border-color:#f4dce5;
+  background:rgba(242,221,227,.11);
+}
+.intro-overlay.entering .intro-core{transform:scale(.93)}
+.intro-overlay.entering .intro-play{background:rgba(242,221,227,.17)}
+.intro-overlay.leaving{
+  opacity:1;
+  transform:none;
+  pointer-events:auto;
+  transition:none;
+  animation:loaderIrisOut 1.16s cubic-bezier(.7,0,.18,1) both;
+}
+.intro-overlay.leaving .intro-core{animation:loaderRelease .8s cubic-bezier(.2,1,.36,1) both}
+@keyframes loaderWave{
+  0%{height:7px;opacity:.43}
+  50%{height:31px;opacity:1}
+  100%{height:11px;opacity:.65}
+}
+@keyframes loaderRelease{
+  0%{transform:scale(1);opacity:1}
+  40%{transform:scale(.7);opacity:1}
+  100%{transform:scale(2);opacity:0}
+}
+@keyframes loaderIrisOut{
+  0%,22%{clip-path:circle(150% at 50% 50%)}
+  100%{clip-path:circle(0% at 50% 50%)}
+}
+@media(prefers-reduced-motion:reduce){
+  .intro-loader i,.intro-overlay.leaving .intro-core{animation:none}
+  .intro-loader i{height:17px;opacity:1}
+  .intro-loader,.intro-play,.intro-core{transition:none}
+  .intro-overlay.leaving{animation:none;opacity:0;transition:opacity .18s linear}
+}
